@@ -1,5 +1,5 @@
-# template-java
-Skeleton for a java project.
+# helloworld
+Skeleton for a helloworld java project.
 
 ## maven dependencies
 To get all the dependencies in your ```lib``` folder: use the following commands:

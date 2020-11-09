@@ -1,10 +1,10 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
-    <option name="MAIN_CLASS_NAME" value="template.Main" />
+  <configuration default="false" name="HelloWorld" type="Application" factoryName="Application" nameIsGenerated="true">
+    <option name="MAIN_CLASS_NAME" value="helloworld.HelloWorld" />
     <module name="helloworld" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="template.*" />
+        <option name="PATTERN" value="helloworld.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>

@@ -13,11 +13,11 @@
 //     Arjan Kok, Carel Bast                                                                                           ~
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-package template;
+package helloworld;
 
 import org.junit.jupiter.api.*;
 
-class MainTest {
+class HelloWorldTest {
     @Test
     void main() {
         Assertions.assertEquals(21, 11 + 10);
