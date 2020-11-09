@@ -3,7 +3,37 @@ name: build
 on: [push]
 
 jobs:
+###<<<delete-on-init
+  init:
+    runs-on: ubuntu-20.04
+    env:
+      GITHUB_TOKEN: "${{secrets.GITHUB_TOKEN}}"
+    steps:
+      - name: "checkout"
+        uses: actions/checkout@v1
+
+      - name: "attach git head"
+        run: git checkout "${GITHUB_REF#refs/heads/}"
+
+      - name: "get buildtools"
+        uses: ModelingValueGroup/buildtools@master
+
+      - name: "if only one commit: init the repo"
+        run: |
+          if [[ "$(git rev-list --all --count)" == 1 ]]; then
+            echo "::info::INIT TEMPLATE REPO"
+
+            sed '/###delete-on-init$/d;/^###<<<delete-on-init/,/^###delete-on-init>>>/d' -i .github/workflows/build.yaml
+            sed "s/helloworld/$GITHUB_REPOSITORY/" -i project.sh
+            sed "s/template-java/$GITHUB_REPOSITORY/g" -i build.xml
+            sed "s/template-java/$GITHUB_REPOSITORY/g" -i pom.xml
+
+            . <(java -jar ~/buildtools.jar)
+            pushBackToGithub
+          fi
+###delete-on-init>>>
   build:
+    needs: init ###delete-on-init
     runs-on: ubuntu-20.04
     env:
       GITHUB_TOKEN: "${{secrets.GITHUB_TOKEN}}"
