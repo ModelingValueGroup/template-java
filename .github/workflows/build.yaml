@@ -23,10 +23,10 @@ jobs:
           if [[ "$(git rev-list --all --count)" == 1 ]]; then
             echo "::info::INIT TEMPLATE REPO"
 
-            sed '/###delete-on-init$/d;/^###<<<delete-on-init/,/^###delete-on-init>>>/d' -i .github/workflows/build.yaml
-            sed "s/helloworld/$GITHUB_REPOSITORY/" -i project.sh
-            sed "s/template-java/$GITHUB_REPOSITORY/g" -i build.xml
-            sed "s/template-java/$GITHUB_REPOSITORY/g" -i pom.xml
+            sed -i '/###delete-on-init$/d;/^###<<<delete-on-init/,/^###delete-on-init>>>/d' .github/workflows/build.yaml
+            sed -i "s|helloworld|$GITHUB_REPOSITORY|g" project.sh
+            sed -i "s|template-java|$GITHUB_REPOSITORY|g" build.xml
+            sed -i "s|template-java|$GITHUB_REPOSITORY|g" pom.xml
 
             . <(java -jar ~/buildtools.jar)
             pushBackToGithub
