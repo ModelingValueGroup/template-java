@@ -21,19 +21,20 @@ jobs:
       - name: "if only one commit: init the repo"
         run: |
           if [[ "$(git rev-list --all --count)" == 1 ]]; then
+            repo="${GITHUB_REPOSITORY/*\//}"
             echo "::info::INIT TEMPLATE REPO"
 
             sed -i '/###delete-on-init$/d;/^###<<<delete-on-init/,/^###delete-on-init>>>/d' .github/workflows/build.yaml
-            sed -i "s|helloworld|$GITHUB_REPOSITORY|g" project.sh
-            sed -i "s|template-java|$GITHUB_REPOSITORY|g" build.xml
-            sed -i "s|template-java|$GITHUB_REPOSITORY|g" pom.xml
+            sed -i "s|helloworld|$repo|g" project.sh
+            sed -i "s|template-java|$repo|g" build.xml
+            sed -i "s|template-java|$repo|g" pom.xml
 
             . <(java -jar ~/buildtools.jar)
             pushBackToGithub
           fi
 ###delete-on-init>>>
   build:
-    needs: init ###delete-on-init
+    if: ! always ###delete-on-init
     runs-on: ubuntu-20.04
     env:
       GITHUB_TOKEN: "${{secrets.GITHUB_TOKEN}}"
