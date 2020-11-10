@@ -7,7 +7,7 @@ jobs:
   init:
     runs-on: ubuntu-20.04
     env:
-      GITHUB_TOKEN: "${{secrets.GITHUB_TOKEN}}"
+      GITHUB_TOKEN: "${{secrets.WORKFLOW_TOKEN}}"
     steps:
       - name: "checkout"
         uses: actions/checkout@v1
