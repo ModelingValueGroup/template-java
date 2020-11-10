@@ -35,6 +35,7 @@ jobs:
 ###delete-on-init>>>
   build:
     needs: init ###delete-on-init
+    if: github.repository == "ModelingValueGroup/template-java" ###delete-on-init
     runs-on: ubuntu-20.04
     env:
       GITHUB_TOKEN: "${{secrets.GITHUB_TOKEN}}"
