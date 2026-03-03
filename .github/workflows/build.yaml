@@ -49,7 +49,7 @@ jobs:
       - name: "setup JDK"
         uses: actions/setup-java@v1
         with:
-          java-version: 17
+          java-version: 21
 
       - name: "get generic mvg-info"
         uses: ModelingValueGroup/generic-info@master
